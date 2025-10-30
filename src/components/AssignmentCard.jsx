@@ -5,7 +5,7 @@ export default function AssignmentCard({ assignment, currentUser, updateSubmissi
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const hasSubmitted = assignment.submissions[currentUser];
-  // Determine if overdue: dueDate < today and not submitted
+
   const today = new Date();
   const due = new Date(assignment.dueDate);
   const isOverdue = !hasSubmitted && due < today.setHours(0,0,0,0);
@@ -13,18 +13,18 @@ export default function AssignmentCard({ assignment, currentUser, updateSubmissi
   return (
     <div className={`card flex flex-col gap-1 text-left w-full max-w-md mx-auto md:mx-0 ${isOverdue ? 'ring-2 ring-red-300' : ''} animate-fadeIn`}>
       <div className="flex items-center gap-2">
-        <h3 className="font-bold text-lg md:text-xl text-blue-700 mb-1 flex-1">{assignment.title}</h3>
+        <h3 className="flex-1 mb-1 text-lg font-bold text-blue-700 md:text-xl">{assignment.title}</h3>
         {isOverdue && (
           <span className="ml-auto bg-red-100 text-red-700 px-2 py-0.5 rounded-full text-xs font-semibold">Overdue</span>
         )}
       </div>
-      <p className="text-sm md:text-base text-gray-600 mb-1">{assignment.description}</p>
+      <p className="mb-1 text-sm text-gray-600 md:text-base">{assignment.description}</p>
       <p className={`text-xs md:text-sm mb-2 ${isOverdue ? 'text-red-500 font-bold' : 'text-gray-500'}`}>Due: {assignment.dueDate}</p>
       <a
         href={assignment.driveLink}
         target="_blank"
         rel="noreferrer"
-        className="btn btn-secondary text-xs md:text-sm mb-3 w-fit cursor-pointer hover:underline hover:bg-blue-50 transition focus-visible:ring-2 focus-visible:ring-blue-400"
+        className="mb-3 text-xs transition cursor-pointer btn btn-secondary md:text-sm w-fit hover:underline hover:bg-blue-50 focus-visible:ring-2 focus-visible:ring-blue-400"
         aria-label={"Open submission link for " + assignment.title}
       >
         Open Submission Link
